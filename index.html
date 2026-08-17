@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- IMPORTANT FOR PHONE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>I'm Sorry 💗</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", "Comic Sans MS", cursive, sans-serif;
+            background: linear-gradient(135deg, #ffe0eb, #fff5f8);
+            color: #65424d;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
+
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 24px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatingHeart 7s linear infinite;
+        }
+
+        .heart:nth-child(1) {
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            left: 48%;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(4) {
+            left: 72%;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(5) {
+            left: 90%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatingHeart {
+
+            0% {
+                bottom: -50px;
+                transform: translateX(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateX(25px) rotate(10deg);
+            }
+
+            100% {
+                bottom: 110%;
+                transform: translateX(-25px) rotate(-10deg);
+            }
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            min-height: 100vh;
+            padding: 30px 15px 50px;
+            text-align: center;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .title {
+            margin: 10px 0 5px;
+            color: #c44572;
+            font-size: clamp(30px, 8vw, 52px);
+            text-shadow: 2px 2px 0 white;
+        }
+
+        .subtitle {
+            margin: 0 auto 25px;
+            color: #946071;
+            font-size: clamp(14px, 4vw, 18px);
+        }
+
+
+        /* =========================
+           ENVELOPE AREA
+        ========================= */
+
+        .envelope-area {
+            position: relative;
+            width: min(92vw, 560px);
+            height: 430px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================
+           LETTER
+        ========================= */
+
+        .letter {
+            position: absolute;
+
+            width: 90%;
+            max-width: 510px;
+
+            height: 320px;
+
+            left: 5%;
+            bottom: 45px;
+
+            padding: 25px;
+
+            background: #fffdf5;
+            border-radius: 15px;
+
+            text-align: left;
+
+            box-shadow:
+                0 8px 25px rgba(120, 60, 80, 0.20);
+
+            opacity: 0;
+
+            transform: translateY(30px);
+
+            transition:
+                bottom 0.9s ease,
+                transform 0.9s ease,
+                opacity 0.7s ease;
+
+            overflow-y: auto;
+
+            z-index: 2;
+        }
+
+        .letter h2 {
+            margin: 0 0 16px;
+            color: #d84d78;
+            font-size: 24px;
+        }
+
+        .letter p {
+            margin: 0 0 15px;
+
+            color: #59404a;
+
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .letter .sorry {
+            color: #d34d78;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .signature {
+            margin-top: 20px;
+
+            color: #c44572;
+
+            text-align: right;
+
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           ENVELOPE
+        ========================= */
+
+        .envelope {
+            position: absolute;
+
+            width: 100%;
+            height: 230px;
+
+            bottom: 0;
+
+            background: #f39db8;
+
+            border-radius: 0 0 18px 18px;
+
+            box-shadow:
+                0 12px 30px rgba(130, 60, 85, 0.22);
+
+            cursor: pointer;
+
+            z-index: 5;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        /* =========================
+           ENVELOPE FRONT
+        ========================= */
+
+        .envelope-front {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 165px;
+
+            background: #f5a7bf;
+
+            clip-path: polygon(
+                0 0,
+                50% 72%,
+                100% 0,
+                100% 100%,
+                0 100%
+            );
+
+            z-index: 6;
+        }
+
+
+        /* =========================
+           ENVELOPE FLAP
+        ========================= */
+
+        .flap {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 140px;
+
+            background: #ffc1d3;
+
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                50% 100%
+            );
+
+            transform-origin: top;
+
+            transition: transform 0.8s ease;
+
+            z-index: 8;
+        }
+
+
+        /* =========================
+           HEART SEAL
+        ========================= */
+
+        .seal {
+            position: absolute;
+
+            left: 50%;
+            bottom: 60px;
+
+            transform: translateX(-50%);
+
+            width: 62px;
+            height: 62px;
+
+            background: #e85c83;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+
+            font-size: 29px;
+
+            z-index: 10;
+
+            box-shadow:
+                0 5px 12px rgba(120, 40, 70, 0.25);
+
+            transition: opacity 0.4s ease;
+        }
+
+
+        /* =========================
+           OPEN LETTER
+        ========================= */
+
+        .envelope-area.open .letter {
+            bottom: 155px;
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+            z-index: 7;
+        }
+
+        .envelope-area.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-area.open .seal {
+            opacity: 0;
+        }
+
+
+        /* =========================
+           GIF
+        ========================= */
+
+        .gif-box {
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .gif-box img {
+            width: 140px;
+            height: 140px;
+
+            object-fit: contain;
+
+            animation: cuteBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes cuteBounce {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .gif-text {
+            margin-top: 0;
+
+            color: #a34d69;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           INSTRUCTION
+        ========================= */
+
+        .instruction {
+            margin-top: 15px;
+
+            color: #956171;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           PHONE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding-top: 20px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .envelope-area {
+                width: 94vw;
+                height: 440px;
+            }
+
+            .letter {
+
+                width: 92%;
+
+                left: 4%;
+
+                height: 315px;
+
+                padding: 20px;
+
+                bottom: 35px;
+            }
+
+            .letter h2 {
+                font-size: 21px;
+            }
+
+            .letter p {
+                font-size: 14px;
+                line-height: 1.55;
+            }
+
+            .letter .sorry {
+                font-size: 17px;
+            }
+
+            .envelope {
+                height: 205px;
+            }
+
+            .flap {
+                height: 115px;
+            }
+
+            .envelope-front {
+                height: 145px;
+            }
+
+            .seal {
+                width: 55px;
+                height: 55px;
+
+                bottom: 52px;
+
+                font-size: 25px;
+            }
+
+            .envelope-area.open .letter {
+                bottom: 135px;
+            }
+
+            .gif-box img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .gif-text {
+                font-size: 15px;
+            }
+        }
+
+
+        /* =========================
+           VERY SMALL PHONES
+        ========================= */
+
+        @media (max-width: 380px) {
+
+            .title {
+                font-size: 28px;
+            }
+
+            .envelope-area {
+                height: 425px;
+            }
+
+            .letter {
+                height: 300px;
+                padding: 17px;
+            }
+
+            .letter p {
+                font-size: 13px;
+            }
+
+            .envelope-area.open .letter {
+                bottom: 130px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Floating hearts -->
+
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+    <div class="heart">💓</div>
+    <div class="heart">💗</div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+        <h1 class="title">
+            ♡ A Little Letter For You ♡
+        </h1>
+
+        <p class="subtitle">
+            Tap the envelope to open a little surprise 💌
+        </p>
+
+
+        <!-- ENVELOPE AREA -->
+
+        <div
+            class="envelope-area"
+            id="envelopeArea"
+        >
+
+
+            <!-- =====================
+                 LETTER
+            ====================== -->
+
+            <div class="letter">
+
+                <h2>
+                    Dear Love, 💗
+                </h2>
+
+                <p>
+                    I just want to say that I'm really sorry
+                    cuz i ignored u instead to talk about it and made you feel bad.
+                </p>
+
+                <p>
+                    I secretly get jealous when someone have
+                    your attention and i know i dont 
+                    have right.
+                </p>
+
+                <p>
+                    Naiinis din ako sa sarili ko first time 
+                    that i feel that way huhu.
+                </p>
+
+                <p class="sorry">
+                    Sorry. 🥺💗
+                </p>
+
+            
+                <div class="signature">
+
+                    love, ♡<br>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 ENVELOPE
+            ====================== -->
+
+            <div
+                class="envelope"
+                onclick="openLetter()"
+            >
+
+                <!-- Flap -->
+
+                <div class="flap"></div>
+
+
+                <!-- Front -->
+
+                <div class="envelope-front"></div>
+
+
+                <!-- Heart -->
+
+                <div class="seal">
+                    ♥
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             GIF
+        ====================== -->
+
+        <div class="gif-box">
+
+            <img
+                src="mimibubu.gif"
+                alt="mimibubu.gif"
+            >
+
+            <div class="gif-text">
+                I'm really sorry... 🥺👉👈
+            </div>
+
+        </div>
+
+
+        <!-- INSTRUCTION -->
+
+        <div
+            class="instruction"
+            id="instruction"
+        >
+            💌 Tap the envelope to open my letter 💌
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function openLetter() {
+
+            const envelopeArea =
+                document.getElementById("envelopeArea");
+
+            const instruction =
+                document.getElementById("instruction");
+
+
+            envelopeArea.classList.toggle("open");
+
+
+            if (envelopeArea.classList.contains("open")) {
+
+                instruction.innerHTML =
+                    "💗 I hope this little letter makes you smile 💗";
+
+            } else {
+
+                instruction.innerHTML =
+                    "💌 Tap the envelope to open my letter 💌";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
+
